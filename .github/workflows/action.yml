@@ -1,0 +1,47 @@
+#Note Kubernetes Is Down right now 
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Change to your default branch if necessary
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: karthikeyanrajapushpavanam/wisecom-app:latest
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1  #  your AWS region
+
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig --name Karthikeyan-EKS-Env
+
+      - name: Apply Kubernetes manifest
+        run: kubectl apply -f Kubernetes_file/K8_manifest.yaml
