@@ -30,3 +30,4 @@ This documentation outlines the development and deployment process for the Wisec
 - **Prerequisite**: Run the following command to install Cert-Manager:
   ```bash
   kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.4.0/cert-manager.yaml
+  //curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
