@@ -31,3 +31,5 @@ This documentation outlines the development and deployment process for the Wisec
   ```bash
   kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.4.0/cert-manager.yaml
   //curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+  //curl -LO "https://dl.k8s.io/release/$(curl -Ls https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  //sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
