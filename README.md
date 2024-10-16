@@ -33,3 +33,12 @@ This documentation outlines the development and deployment process for the Wisec
   //curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
   //curl -LO "https://dl.k8s.io/release/$(curl -Ls https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
   //sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+  //kubectl apply -f K8_manifest.yaml
+//namespace/ms unchanged
+//deployment.apps/wisecow-deployment unchanged
+//service/wisecow-service unchanged
+//ingress.networking.k8s.io/wisecow-ingress unchanged
+//Error from server (InternalError): error when creating "K8_manifest.yaml": Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: 
+//Post "https://cert-manager-webhook.cert-manager.svc:443/mutate?////timeout=10s": dial tcp 10.108.13.120:443: connect: connection refused
+
